@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30104.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlDesign", "ControlDesign\ControlDesign.csproj", "{F8598C7A-33D5-4070-B6B2-5F1F459CC8FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignLibrary", "DesignLibrary\DesignLibrary.csproj", "{0E52C175-FD6D-445B-A89E-DADD822364BF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8598C7A-33D5-4070-B6B2-5F1F459CC8FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8598C7A-33D5-4070-B6B2-5F1F459CC8FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8598C7A-33D5-4070-B6B2-5F1F459CC8FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8598C7A-33D5-4070-B6B2-5F1F459CC8FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E52C175-FD6D-445B-A89E-DADD822364BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E52C175-FD6D-445B-A89E-DADD822364BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E52C175-FD6D-445B-A89E-DADD822364BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E52C175-FD6D-445B-A89E-DADD822364BF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B42A33BE-913C-4E3A-AE08-1D4E4FC6B4B8}
+	EndGlobalSection
+EndGlobal
