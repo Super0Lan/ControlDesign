@@ -1,0 +1,158 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:DesignLibrary">
+    <Style TargetType="Button" x:Key="InputBtn">
+        <Setter Property="Background" Value="#f5f7fa"></Setter>
+        <Setter Property="BorderBrush" Value="#C2C6CE"></Setter>
+        <Setter Property="Foreground" Value="#606266"></Setter>
+        <Setter Property="FontSize" Value="13"></Setter>
+        <Setter Property="local:Assists.IsEnable" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=IsEnabled}"></Setter>
+        <Setter Property="Width" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:InputNumber}},Path=ActualHeight}"></Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="#409EFF"></Setter>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="#DBDEE3"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+
+    <Style TargetType="Button" x:Key="DecreaseBtn" BasedOn="{StaticResource InputBtn}">
+        <Setter Property="BorderThickness" Value="0 0 1 0"></Setter>
+        <Setter Property="local:Assists.CornerRadius" Value="4 0 0 4"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border CornerRadius="{TemplateBinding local:Assists.CornerRadius}" 
+                            x:Name="border" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Background="{TemplateBinding Background}" 
+                            SnapsToDevicePixels="true">
+                        <Path VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            Width="13" 
+                            Height="13" 
+                            Fill="{TemplateBinding Foreground}" 
+                            Stretch="Uniform" 
+                            Data="M0 441.78324h1024.133874v120.620211H0z"></Path>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button" x:Key="IncreaseBtn" BasedOn="{StaticResource InputBtn}">
+        <Setter Property="BorderThickness" Value="1 0 0 0"></Setter>
+        <Setter Property="local:Assists.CornerRadius" Value="0 4 4 0"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border CornerRadius="{TemplateBinding local:Assists.CornerRadius}" 
+                            x:Name="border" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Background="{TemplateBinding Background}" 
+                            SnapsToDevicePixels="true">
+                        <Path VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            Width="13" 
+                            Height="13" 
+                            Fill="{TemplateBinding Foreground}" 
+                            Stretch="Uniform" 
+                            Data="M0.534866 451.100144h1022.796709v120.462723H0.534866v-120.462723zM451.635009 0h120.462724v1022.79671h-120.462724V0z m0 0"></Path>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="{x:Type local:InputNumber}">
+        <Setter Property="Width" Value="180"></Setter>
+        <Setter Property="Height" Value="40"></Setter>
+        <Setter Property="CornerRadius" Value="4"></Setter>
+        <Setter Property="BorderThickness" Value="1"></Setter>
+        <Setter Property="BorderBrush" Value="#DCDFE6"></Setter>
+        <Setter Property="Foreground" Value="#606266"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="ForceCursor" Value="True"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:InputNumber}">
+                    <Border x:Name="border" Background="{TemplateBinding Background}" SnapsToDevicePixels="True"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Button Grid.RowSpan="2" x:Name="PART_DecreaseButton" Style="{StaticResource DecreaseBtn}"></Button>
+                            <Label Visibility="Collapsed" x:Name="holder" Grid.RowSpan="2" Grid.Column="1" Content="{TemplateBinding PlaceHolder}" 
+                                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                   FontSize="{TemplateBinding FontSize}" Foreground="#dcdfe6" IsHitTestVisible="False"
+                                   Width="{Binding ElementName=PART_ContentHost,Path=Width}" 
+                                   Height="{Binding ElementName=PART_ContentHost,Path=Height}"></Label>
+                            <ScrollViewer Grid.RowSpan="2" x:Name="PART_ContentHost" Grid.Column="1" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+
+                            <Button Grid.RowSpan="2" x:Name="PART_IncreaseButton" Style="{StaticResource IncreaseBtn}" Grid.Column="2"></Button>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self},Path=Text.Length}" Value="0">
+                            <Setter TargetName="holder" Property="Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                        <Trigger Property="Controls" Value="False">
+                            <Setter TargetName="PART_DecreaseButton" Property="Visibility" Value="Collapsed"></Setter>
+                            <Setter TargetName="PART_IncreaseButton" Property="Visibility" Value="Collapsed"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="#C0C4CC"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="#409EFF"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                            <Setter Property="BorderBrush" Value="#409EFF"></Setter>
+                        </Trigger>
+                        <Trigger Property="ControlsPosition" Value="Right">
+                            <Setter TargetName="PART_DecreaseButton" Property="Grid.Column" Value="2"></Setter>
+                            <Setter TargetName="PART_DecreaseButton" Property="Grid.RowSpan" Value="1"></Setter>
+                            <Setter TargetName="PART_DecreaseButton" Property="Grid.Row" Value="2"></Setter>
+                            <Setter TargetName="PART_DecreaseButton" Property="local:Assists.CornerRadius" Value="0 0 4 0"></Setter>
+                            <Setter TargetName="PART_DecreaseButton" Property="BorderThickness" Value="1 1 0 0"></Setter>
+                            
+                            <Setter TargetName="PART_IncreaseButton" Property="Grid.RowSpan" Value="1"></Setter>
+                        </Trigger>
+
+                        <Trigger Property="ControlsPosition" Value="Left">
+                            <Setter TargetName="PART_IncreaseButton" Property="Grid.Column" Value="0"></Setter>
+                            <Setter TargetName="PART_IncreaseButton" Property="Grid.RowSpan" Value="1"></Setter>
+                            <Setter TargetName="PART_IncreaseButton" Property="Grid.Row" Value="0"></Setter>
+                            <Setter TargetName="PART_IncreaseButton" Property="local:Assists.CornerRadius" Value="4 0 0 0"></Setter>
+                            <Setter TargetName="PART_IncreaseButton" Property="BorderThickness" Value="0 0 1 1"></Setter>
+                            
+                            <Setter TargetName="PART_DecreaseButton" Property="Grid.RowSpan" Value="1"></Setter>
+                            <Setter TargetName="PART_DecreaseButton" Property="Grid.Row" Value="1"></Setter>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

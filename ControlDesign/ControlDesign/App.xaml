@@ -6,7 +6,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!--<ResourceDictionary Source="pack://application:,,,/InputNumber;component/Themes/Generic.xaml"></ResourceDictionary>-->
+                <ResourceDictionary Source="pack://application:,,,/DesignLibrary;component/Themes/InputNumber.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

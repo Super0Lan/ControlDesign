@@ -23,23 +23,6 @@ namespace ControlDesign
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new List<object>() {
-                new { Name ="1",UserName = "1"},
-                new { Name ="11",UserName = "11"},
-                new { Name ="111",UserName = "111"},
-                new { Name ="1111",UserName = "1111"},
-                new { Name ="11111",UserName = "11111"},
-            };
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //tb.Focus();
-        }
-
-        private void Button_MouseMove(object sender, MouseEventArgs e)
-        {
-
         }
     }
 }
