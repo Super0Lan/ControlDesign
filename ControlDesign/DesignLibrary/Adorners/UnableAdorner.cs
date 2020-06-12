@@ -6,20 +6,14 @@ using System.Windows.Media;
 
 namespace DesignLibrary
 {
-    public class UnableAdorner : Adorner
+    public class UnableAdorner : BaseAdorner
     {
-        private readonly VisualCollection _collection;
-
         private readonly Grid _grid;
         private Border _border;
 
-        protected override int VisualChildrenCount => _collection.Count;
-
-        protected override Visual GetVisualChild(int index) => _collection[index];
 
         public UnableAdorner(UIElement uIElement) : base(uIElement) {
 
-            _collection = new VisualCollection(this);
             _grid = new Grid();
             _border = new Border()
             {
@@ -28,7 +22,7 @@ namespace DesignLibrary
             };
 
             _grid.Children.Add(_border);
-            _collection.Add(_grid);
+            VisualCollection.Add(_grid);
         }
 
         public void SetEnable(bool isEnable) {

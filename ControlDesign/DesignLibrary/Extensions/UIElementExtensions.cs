@@ -22,9 +22,6 @@ namespace DesignLibrary.Extensions
             {
                 throw new Exception("VisualParents Must have AdornerDecorator!");
             }
-            if (type.BaseType != typeof(Adorner)) {
-                throw new Exception("Type Must be Adorner");
-            }
             var adorner = adornerLayer.GetAdorners(uIElement)?.FirstOrDefault(x => x?.GetType() == type);
             if (adorner == null)
             {

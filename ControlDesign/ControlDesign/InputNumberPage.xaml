@@ -1,0 +1,58 @@
+﻿<Page x:Class="ControlDesign.InputNumberPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ControlDesign"
+      mc:Ignorable="d" 
+        Height="450" Width="800"
+      xmlns:lib="clr-namespace:DesignLibrary;assembly=DesignLibrary"
+      Title="InputNumberPage">
+    <Page.Resources>
+        <Style TargetType="lib:InputNumber" BasedOn="{StaticResource {x:Type lib:InputNumber}}">
+            <Setter Property="Margin" Value="10"></Setter>
+        </Style>
+    </Page.Resources>
+    <WrapPanel Margin="10">
+        <StackPanel>
+            <lib:InputNumber Number="1"  Text="0" Max="10" Min="1"></lib:InputNumber>
+            <Label Content="基础用法"></Label>
+        </StackPanel>
+
+        <StackPanel>
+            <lib:InputNumber Number="1" Step="2"  Max="10" Min="1"></lib:InputNumber>
+            <Label Content="允许定义递增递减的步数控制 Step = 2"></Label>
+        </StackPanel>
+        <StackPanel>
+            <lib:InputNumber Step="3"  Max="24" Min="1"  StepStrictly="True"></lib:InputNumber>
+            <Label Content="严格步数Step = 3"></Label>
+        </StackPanel>
+        <StackPanel>
+            <lib:InputNumber Step="1.1"  Max="11" Min="1"  Precision="2"></lib:InputNumber>
+            <Label Content="精度"></Label>
+        </StackPanel>
+        <StackPanel>
+            <lib:InputNumber  Max="10" Min="1" ControlsPosition="Right"></lib:InputNumber>
+            <Label Content="按钮位置Right"></Label>
+        </StackPanel>
+        <StackPanel>
+            <lib:InputNumber  Max="10" Min="1" ControlsPosition="Left"></lib:InputNumber>
+            <Label Content="按钮位置Left"></Label>
+        </StackPanel>
+        <StackPanel>
+            <lib:InputNumber Max="10" Min="1" PlaceHolder="请输入内容"></lib:InputNumber>
+            <Label Content="输入框默认 placeholder"></Label>
+        </StackPanel>
+        <StackPanel>
+            <lib:InputNumber  Controls="False" Width="100"></lib:InputNumber>
+            <Label Content="隐藏按钮"></Label>
+        </StackPanel>
+        <StackPanel>
+            <lib:InputNumber  x:Name="Test" Max="10" Min="1" Text="{Binding RelativeSource={RelativeSource Mode=Self},Path=Number}"></lib:InputNumber>
+            <WrapPanel>
+                <Label Content="绑定到Number"></Label>
+                <TextBox Width="100" Height="30" Text="{Binding ElementName=Test,Mode=TwoWay,Path=Number,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </WrapPanel>
+        </StackPanel>
+    </WrapPanel>
+</Page>

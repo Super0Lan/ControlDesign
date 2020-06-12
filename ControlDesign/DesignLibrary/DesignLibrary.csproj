@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -48,10 +49,13 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adorners\BadgeAdorber.cs" />
+    <Compile Include="Adorners\BaseAdorner.cs" />
     <Compile Include="Adorners\UnableAdorner.cs" />
     <Compile Include="Assists.cs" />
     <Compile Include="Controls\InputNumber.cs" />
     <Compile Include="Extensions\UIElementExtensions.cs" />
+    <Compile Include="InputNumber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -75,6 +79,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Themes\Badge.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\InputNumber.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

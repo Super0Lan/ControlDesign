@@ -5,53 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ControlDesign" 
         xmlns:lib="clr-namespace:DesignLibrary;assembly=DesignLibrary"
+          xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <!--<Frame Source="InputNumberPage.xaml"></Frame>-->
     <Window.Resources>
-        <Style TargetType="lib:InputNumber" BasedOn="{StaticResource {x:Type lib:InputNumber}}">
-            <Setter Property="Margin" Value="10"></Setter>
-        </Style>
+        <ObjectDataProvider MethodName="GetValues"
+                        ObjectType="{x:Type sys:Enum}"
+                        x:Key="AlignmentValues">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type Type="{x:Type lib:EnumAlignment}" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
     </Window.Resources>
-    <WrapPanel Margin="10">
+    <AdornerDecorator>
         <StackPanel>
-            <lib:InputNumber Number="1"  Text="0" Max="10" Min="1"></lib:InputNumber>
-            <Label Content="基础用法"></Label>
+            <WrapPanel Margin="50" x:Name="panel" >
+                <Button Margin="20"  Width="100" Height="40" Content="测试" lib:Assists.HideBadge="{Binding ElementName=hide,Path=IsChecked}" lib:Assists.Badge="{Binding ElementName=TB,Path=Text}" lib:Assists.BadgeAlignment="{Binding ElementName=items,Path=SelectedItem}" ></Button>
+
+                <ListBox  Margin="20 0" SelectedIndex="-1" ItemsSource="{Binding Source={StaticResource AlignmentValues}}" x:Name="items"></ListBox>
+                <TextBox  Width="100" Height="30" x:Name="TB" Text="1"></TextBox>
+                <CheckBox  Height="30" x:Name="hide">隐藏标记</CheckBox>
+            </WrapPanel>
+            <!--<Button Content="添加" Width="100" Height="30" Click="Button_Click"></Button>
+            <Button Content="删除" Width="100" Height="30" Click="Button_Click_2"></Button>-->
         </StackPanel>
 
-        <StackPanel>
-            <lib:InputNumber Number="1" Step="2"  Max="10" Min="1"></lib:InputNumber>
-            <Label Content="允许定义递增递减的步数控制 Step = 2"></Label>
-        </StackPanel>
-        <StackPanel>
-            <lib:InputNumber Step="3"  Max="24" Min="1"  StepStrictly="True"></lib:InputNumber>
-            <Label Content="严格步数Step = 3"></Label>
-        </StackPanel>
-        <StackPanel>
-            <lib:InputNumber Step="1.1"  Max="11" Min="1"  Precision="2"></lib:InputNumber>
-            <Label Content="精度"></Label>
-        </StackPanel>
-        <StackPanel>
-            <lib:InputNumber  Max="10" Min="1" ControlsPosition="Right"></lib:InputNumber>
-            <Label Content="按钮位置Right"></Label>
-        </StackPanel>
-        <StackPanel>
-            <lib:InputNumber  Max="10" Min="1" ControlsPosition="Left"></lib:InputNumber>
-            <Label Content="按钮位置Left"></Label>
-        </StackPanel>
-        <StackPanel>
-            <lib:InputNumber Max="10" Min="1" PlaceHolder="请输入内容"></lib:InputNumber>
-            <Label Content="输入框默认 placeholder"></Label>
-        </StackPanel>
-        <StackPanel>
-            <lib:InputNumber  Max="10" Min="1" Controls="False" Width="100"></lib:InputNumber>
-            <Label Content="禁用按钮"></Label>
-        </StackPanel>
-        <StackPanel>
-            <lib:InputNumber  x:Name="Test" Max="10" Min="1" Text="{Binding RelativeSource={RelativeSource Mode=Self},Path=Number}"></lib:InputNumber>
-            <WrapPanel>
-                <Label Content="绑定到Number"></Label>
-                <TextBox Width="100" Height="30" Text="{Binding ElementName=Test,Mode=TwoWay,Path=Number,UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            </WrapPanel>
-        </StackPanel>
-    </WrapPanel>
+    </AdornerDecorator>
+
 </Window>

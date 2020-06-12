@@ -19,8 +19,6 @@
         </Style.Triggers>
     </Style>
 
-
-
     <Style TargetType="Button" x:Key="DecreaseBtn" BasedOn="{StaticResource InputBtn}">
         <Setter Property="BorderThickness" Value="0 0 1 0"></Setter>
         <Setter Property="local:Assists.CornerRadius" Value="4 0 0 4"></Setter>
@@ -35,10 +33,8 @@
                             SnapsToDevicePixels="true">
                         <Path VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            Width="13" 
-                            Height="13" 
                             Fill="{TemplateBinding Foreground}" 
-                            Stretch="Uniform" 
+                            Stretch="Uniform"  Width="13" Height="13"
                             Data="M0 441.78324h1024.133874v120.620211H0z"></Path>
                     </Border>
                 </ControlTemplate>
