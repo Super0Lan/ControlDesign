@@ -124,10 +124,7 @@ namespace DesignLibrary
                 {
                     _decreaseButton.IsEnabled = Number - Min >= Step;
                     _increaseButton.IsEnabled = Number <= Max - Step;
-                    if (!_decreaseButton.IsEnabled || !_increaseButton.IsEnabled)
-                    {
-                        SelectionStart = (Number?.ToString("f" + Precision)).Length;
-                    }
+                    SelectionStart = (Number?.ToString("f" + Precision)).Length;
                 }
             }
         }

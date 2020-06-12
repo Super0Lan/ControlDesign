@@ -6,6 +6,7 @@
         <Setter Property="BorderBrush" Value="#C2C6CE"></Setter>
         <Setter Property="Foreground" Value="#606266"></Setter>
         <Setter Property="FontSize" Value="13"></Setter>
+        <Setter Property="Focusable" Value="False"></Setter>
         <Setter Property="local:Assists.IsEnable" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=IsEnabled}"></Setter>
         <Setter Property="Width" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:InputNumber}},Path=ActualHeight}"></Setter>
         <Style.Triggers>
