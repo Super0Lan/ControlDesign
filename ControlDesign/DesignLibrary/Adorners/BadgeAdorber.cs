@@ -21,8 +21,14 @@ namespace DesignLibrary
             _label = new Label();
             _label.Style = (Style)TryFindResource("BadgeLabel");
             _label.Loaded += _label_Loaded;
+            _label.Unloaded += _label_Unloaded;
             _grid.Children.Add(_label);
             VisualCollection.Add(_grid);
+        }
+
+        private void _label_Unloaded(object sender, RoutedEventArgs e)
+        {
+            _label.SizeChanged -= _label_SizeChanged;
         }
 
         private void _label_Loaded(object sender, RoutedEventArgs e)
