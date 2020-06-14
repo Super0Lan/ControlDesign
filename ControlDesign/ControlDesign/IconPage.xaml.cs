@@ -1,8 +1,7 @@
-﻿using DesignLibrary;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
-using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,15 +17,13 @@ using System.Windows.Shapes;
 namespace ControlDesign
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// IconPage.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class IconPage : Page
     {
-        public MainWindow()
+        public IconPage()
         {
             InitializeComponent();
         }
-
-
     }
 }

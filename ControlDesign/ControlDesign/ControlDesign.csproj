@@ -75,6 +75,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="IconPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="InputNumberPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -89,6 +93,9 @@
     </Compile>
     <Compile Include="BadgePage.xaml.cs">
       <DependentUpon>BadgePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IconPage.xaml.cs">
+      <DependentUpon>IconPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="InputNumberPage.xaml.cs">
       <DependentUpon>InputNumberPage.xaml</DependentUpon>

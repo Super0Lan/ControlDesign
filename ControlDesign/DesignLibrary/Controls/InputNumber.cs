@@ -256,7 +256,7 @@ namespace DesignLibrary
 
         // Using a DependencyProperty as the backing store for ControlsPosition.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ControlsPositionProperty =
-            DependencyProperty.Register("ControlsPosition", typeof(EnumPosition), typeof(InputNumber), new PropertyMetadata(EnumPosition.Default));
+            DependencyProperty.Register("ControlsPosition", typeof(EnumPosition), typeof(InputNumber), new PropertyMetadata(EnumPosition.Strech));
 
 
         #endregion
@@ -312,12 +312,5 @@ namespace DesignLibrary
 
 
         #endregion
-    }
-
-    public enum EnumPosition
-    {
-        Default,
-        Left,
-        Right,
     }
 }

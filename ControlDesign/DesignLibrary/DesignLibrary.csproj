@@ -54,7 +54,11 @@
     <Compile Include="Adorners\UnableAdorner.cs" />
     <Compile Include="Assists.cs" />
     <Compile Include="Controls\InputNumber.cs" />
+    <Compile Include="Enums\EnumAlignment.cs" />
+    <Compile Include="Enums\EnumIcon.cs" />
+    <Compile Include="Enums\EnumPosition.cs" />
     <Compile Include="Extensions\UIElementExtensions.cs" />
+    <Compile Include="IconDataFactory.cs" />
     <Compile Include="InputNumber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

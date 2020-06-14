@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace DesignLibrary
 {
@@ -175,18 +176,37 @@ namespace DesignLibrary
         #endregion
 
         #endregion
+
+        #region 图标Icon
+
+
+        public static EnumIcon GetIcon(DependencyObject obj)
+        {
+            return (EnumIcon)obj.GetValue(IconProperty);
+        }
+
+        public static void SetIcon(DependencyObject obj, EnumIcon value)
+        {
+            obj.SetValue(IconProperty, value);
+        }
+
+        // Using a DependencyProperty as the backing store for Icon.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IconProperty =
+            DependencyProperty.RegisterAttached("Icon", typeof(EnumIcon), typeof(Assists), new PropertyMetadata(default(EnumIcon), IconPropertyChanged));
+
+        private static void IconPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is Path path) {
+                if (Enum.TryParse(e.NewValue.ToString(), out EnumIcon icon))
+                {
+                    var source = Geometry.Parse(IconDataFactory.IconDic[icon]);
+                    path.Data = source;
+                }
+            }
+        }
+
+        #endregion
     }
 
-    public enum EnumAlignment
-    {
-        TopLeft,
-        TopCenter,
-        TopRight,
-        CenterLeft,
-        Middle,
-        CenterRight,
-        BottomLeft,
-        BottomCenter,
-        BottomRight,
-    }
+
 }

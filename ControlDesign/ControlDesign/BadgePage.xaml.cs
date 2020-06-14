@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DesignLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,29 @@ namespace ControlDesign
         public BadgePage()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var button = new Button()
+            {
+                Content = DateTime.Now.Second,
+                Width = 100,
+                Height = 20,
+            };
+            Assists.SetIsCircle(button, true);
+            panel.Children.Add(button);
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            DesignLibrary.Assists.SetBadge(panel.Children[panel.Children.Count - 1], Guid.NewGuid().ToString());
+
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            panel.Children.RemoveAt(panel.Children.Count - 1);
         }
     }
 }
