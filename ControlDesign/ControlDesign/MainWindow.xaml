@@ -10,48 +10,8 @@
         Title="MainWindow" Height="450" Width="800">
     <!--<Frame Source="InputNumberPage.xaml"></Frame>-->
     <!--<Frame Source="BadgePage.xaml"></Frame>-->
-    <Frame Source="IconPage.xaml"></Frame>
-    <!--<Window.Resources>
-        <Style TargetType="Path">
-            <Setter Property="Width" Value="32"></Setter>
-            <Setter Property="Height" Value="32"></Setter>
-            <Setter Property="Stretch" Value="Uniform"></Setter>
-            <Setter Property="Fill" Value="#606266"></Setter>
-        </Style>
-        <Style TargetType="Button">
-            <Setter Property="Width" Value="90"></Setter>
-            <Setter Property="Height" Value="40"></Setter>
-            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
-            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
-            <Setter Property="Background" Value="#409EFF"></Setter>
-            <Setter Property="BorderThickness" Value="0"></Setter>
-            <Setter Property="FontSize" Value="14"></Setter>
-            <Setter Property="Foreground" Value="White"></Setter>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border CornerRadius="4" x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <Path Grid.Column="1" Width="16" Height="16" Stretch="Uniform" Fill="{TemplateBinding Foreground}" lib:Assists.Icon="{TemplateBinding lib:Assists.Icon}"></Path>
-                                <ContentPresenter Margin="{TemplateBinding Padding}" Grid.Column="2" x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                            </Grid>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Window.Resources>
-    <WrapPanel Margin="50" ItemWidth="100">
-        <Path lib:Assists.Icon="Edit"></Path>
-        <Path lib:Assists.Icon="Share"></Path>
-        <Path lib:Assists.Icon="Refresh"></Path>
-        <Button Content="搜素" lib:Assists.Icon="Search"></Button>
-    </WrapPanel>-->
+    <!--<Frame Source="IconPage.xaml"></Frame>-->
+    <Frame Source="Loading.xaml"></Frame>
+ 
 
 </Window>

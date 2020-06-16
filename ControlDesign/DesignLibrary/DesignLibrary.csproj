@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Adorners\BadgeAdorber.cs" />
     <Compile Include="Adorners\BaseAdorner.cs" />
+    <Compile Include="Adorners\LoadingAdorner.cs" />
     <Compile Include="Adorners\UnableAdorner.cs" />
     <Compile Include="Assists.cs" />
     <Compile Include="Controls\InputNumber.cs" />

@@ -192,5 +192,7 @@ namespace DesignLibrary
         TaoTao,
 
         _1688,
+
+        Loading,
     }
 }
