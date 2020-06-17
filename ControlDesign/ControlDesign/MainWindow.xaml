@@ -12,6 +12,6 @@
     <!--<Frame Source="BadgePage.xaml"></Frame>-->
     <!--<Frame Source="IconPage.xaml"></Frame>-->
     <!--<Frame Source="Loading.xaml"></Frame>-->
- 
+    <local:MapControl></local:MapControl>
 
 </Window>
