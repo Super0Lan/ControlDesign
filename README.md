@@ -7,3 +7,6 @@
 
 [WPF 自定义控件之Icon 图标](https://blog.csdn.net/qq_29198233/article/details/106743489)</br>
 <img src="https://img-blog.csdnimg.cn/20200614112336768.gif" width="500">
+
+[WPF 自定义控件之Loading 加载](https://blog.csdn.net/qq_29198233/article/details/106804389)</br>
+<img src="https://img-blog.csdnimg.cn/202006171155277.gif" width="500">
