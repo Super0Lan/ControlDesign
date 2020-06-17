@@ -10,9 +10,24 @@
       Title="Loading">
     <AdornerDecorator>
         <Grid>
-            <Button Width="100" Height="30" Content="测试" lib:Assists.Loading="True">
-
-            </Button>
+            <StackPanel>
+                <CheckBox x:Name="checkbox">加载中</CheckBox>
+                <TextBox x:Name="text" Text="拼命加载中"></TextBox>
+                <Button Margin="5" Width="100" Height="32" Content="按钮" lib:LoadingAssists.Loading="{Binding ElementName=checkbox,Path=IsChecked}"></Button>
+                <Label Margin="5" Width="100" Height="32" Content="Label" lib:LoadingAssists.Loading="{Binding ElementName=checkbox,Path=IsChecked}"></Label>
+                <Label Content="ListBox" HorizontalAlignment="Center"></Label>
+                <ListBox Margin="5" Width="100" Height="100" lib:LoadingAssists.Loading="{Binding ElementName=checkbox,Path=IsChecked}" lib:LoadingAssists.Text="{Binding ElementName=text,Path=Text}"></ListBox>
+                <ListBox Margin="5" Width="100" Height="100"  lib:LoadingAssists.Icon="Like"
+                         lib:LoadingAssists.Loading="{Binding ElementName=checkbox,Path=IsChecked}" 
+                         lib:LoadingAssists.Text="拼命加载中"></ListBox>
+                <DataGrid ItemsSource="{Binding}"  lib:LoadingAssists.Loading="{Binding ElementName=checkbox,Path=IsChecked}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Name}" Header="1"></DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding Name1}"  Header="2"></DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding Name2}" Header="3"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
         </Grid>
     </AdornerDecorator>
 </Page>

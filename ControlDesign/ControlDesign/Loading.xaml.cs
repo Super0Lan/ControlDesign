@@ -23,6 +23,13 @@ namespace ControlDesign
         public Loading()
         {
             InitializeComponent();
+            DataContext = new List<object>() {
+                new { Name = "a",Name1 = "b",Name2 ="c"},
+                new { Name = "a",Name1 = "b",Name2 ="c"},
+                new { Name = "a",Name1 = "b",Name2 ="c"},
+                new { Name = "a",Name1 = "b",Name2 ="c"},
+                new { Name = "a",Name1 = "b",Name2 ="c"},
+            };
         }
     }
 }

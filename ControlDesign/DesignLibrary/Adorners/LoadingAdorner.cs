@@ -14,29 +14,60 @@ namespace DesignLibrary
 {
     public class LoadingAdorner:BaseAdorner
     {
-        private readonly Grid _grid;
-        private Path _path;
+        #region 是否Loading
 
+        public bool IsLoading
+        {
+            get { return (bool)GetValue(IsLoadingProperty); }
+            set { SetValue(IsLoadingProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for IsLoading.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IsLoadingProperty =
+            DependencyProperty.Register("IsLoading", typeof(bool), typeof(LoadingAdorner), new PropertyMetadata(false));
+
+        #endregion
+
+        #region 显示在加载图标下方的加载文案
+
+
+        public string Text
+        {
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TextProperty =
+            DependencyProperty.Register("Text", typeof(string), typeof(LoadingAdorner), new PropertyMetadata(string.Empty));
+
+
+        #endregion
+
+        #region 加载图标类名
+
+
+        public EnumIcon Icon
+        {
+            get { return (EnumIcon)GetValue(IconProperty); }
+            set { SetValue(IconProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Icon.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IconProperty =
+            DependencyProperty.Register("Icon", typeof(EnumIcon), typeof(LoadingAdorner), new PropertyMetadata(EnumIcon.Loading));
+
+
+        #endregion
+
+        private Control _control;
 
         public LoadingAdorner(UIElement uIElement) : base(uIElement)
         {
-
-            _grid = new Grid() {
-                   Background = Brushes.Transparent,
-                   Cursor = Cursors.Wait,
-                   ForceCursor = true,
+            _control = new Control() {
+                Style = (Style)FindResource("Loading")
             };
-            _path = new Path()
-            {
-                Width = 24,
-                Height = 24,
-                Fill = Brushes.Black,
-                Stretch = Stretch.Uniform,
-                RenderTransformOrigin = new Point(0.5,0.5),
-            };
-            Assists.SetIcon(_path, EnumIcon.Loading);
-            _grid.Children.Add(_path);
-            VisualCollection.Add(_grid);
+            VisualCollection.Add(_control);
         }
 
         protected override Size MeasureOverride(Size constraint)
@@ -46,27 +77,9 @@ namespace DesignLibrary
 
         protected override Size ArrangeOverride(Size finalSize)
         {
-            _grid.Arrange(new Rect(finalSize));
+            _control.Arrange(new Rect(finalSize));
             return base.ArrangeOverride(finalSize);
-
-        }
-
-        public void SetStatus(bool newValue)
-        {
-            if (!newValue)
-            {
-                _path.RenderTransform = null;
-            }
-            else
-            {
-                RotateTransform rtf = new RotateTransform();
-                _path.RenderTransform = rtf;
-                _path.RenderTransform.BeginAnimation(RotateTransform.AngleProperty, new DoubleAnimation(0, 360, new Duration(TimeSpan.FromMilliseconds(2000)))
-                {
-                    BeginTime = new TimeSpan(0),
-                    RepeatBehavior = RepeatBehavior.Forever,
-                });
-            }
         }
     }
+
 }

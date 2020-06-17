@@ -206,35 +206,6 @@ namespace DesignLibrary
         }
 
         #endregion
-
-        #region 是否等待
-
-
-        public static bool GetLoading(DependencyObject obj)
-        {
-            return (bool)obj.GetValue(LoadingProperty);
-        }
-
-        public static void SetLoading(DependencyObject obj, bool value)
-        {
-            obj.SetValue(LoadingProperty, value);
-        }
-
-        // Using a DependencyProperty as the backing store for Loading.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty LoadingProperty =
-            DependencyProperty.RegisterAttached("Loading", typeof(bool), typeof(Assists), new PropertyMetadata(false,LoadingPropertyChanged));
-
-        private static void LoadingPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (d is UIElement uIElement)
-            {
-                var adorner = (LoadingAdorner)uIElement.GetOrAddAdorner(typeof(LoadingAdorner));
-                adorner.SetStatus((bool)e.NewValue);
-            }
-        }
-
-
-        #endregion
     }
 
 

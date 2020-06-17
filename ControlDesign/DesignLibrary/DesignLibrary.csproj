@@ -61,6 +61,7 @@
     <Compile Include="Extensions\UIElementExtensions.cs" />
     <Compile Include="IconDataFactory.cs" />
     <Compile Include="InputNumber.cs" />
+    <Compile Include="LoadingAssists.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -89,6 +90,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\InputNumber.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Loading.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
