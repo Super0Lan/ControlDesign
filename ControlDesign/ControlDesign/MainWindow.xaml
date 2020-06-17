@@ -11,7 +11,7 @@
     <!--<Frame Source="InputNumberPage.xaml"></Frame>-->
     <!--<Frame Source="BadgePage.xaml"></Frame>-->
     <!--<Frame Source="IconPage.xaml"></Frame>-->
-    <Frame Source="Loading.xaml"></Frame>
+    <!--<Frame Source="Loading.xaml"></Frame>-->
  
 
 </Window>
