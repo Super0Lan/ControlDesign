@@ -18,7 +18,7 @@
         <ListBox BorderThickness="0" Background="Transparent" HorizontalAlignment="Center" ItemsSource="{Binding AreaTree[0].Children}">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <Canvas Background="{x:Null}" Height="550" Width="600"></Canvas>
+                    <Grid Background="{x:Null}" Height="550" Width="600"></Grid>
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
             <ListBox.ItemContainerStyle>
@@ -27,9 +27,12 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="ListBoxItem">
-                                <Grid Background="{x:Null}">
-                                    <Path ToolTip="{Binding Name}" Stroke="White" x:Name="path" Fill="{Binding Total.NowConfirm,Converter={StaticResource NumberToBrushConverter}}" Data="{Binding Name,Converter={StaticResource FindResourceConverter}}"></Path>
-                                </Grid>
+                                <Path ToolTip="{Binding Name}" Stroke="White" x:Name="path" Fill="{Binding Total.NowConfirm,Converter={StaticResource NumberToBrushConverter}}" Data="{Binding Name,Converter={StaticResource FindResourceConverter}}"></Path>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="path" Property="Fill" Value="#FFE766"></Setter>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
