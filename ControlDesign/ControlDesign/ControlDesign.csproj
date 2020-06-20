@@ -51,6 +51,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -72,6 +75,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="BadgePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FeiYanWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -98,6 +105,9 @@
     <Compile Include="BadgePage.xaml.cs">
       <DependentUpon>BadgePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FeiYanWindow.xaml.cs">
+      <DependentUpon>FeiYanWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IconPage.xaml.cs">
       <DependentUpon>IconPage.xaml</DependentUpon>
     </Compile>
@@ -120,6 +130,7 @@
     <Compile Include="MapControl.xaml.cs">
       <DependentUpon>MapControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Data.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -137,6 +148,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

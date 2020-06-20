@@ -2,13 +2,14 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:ControlDesign"
-             StartupUri="MainWindow.xaml">
+             StartupUri="FeiYanWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/DesignLibrary;component/Themes/InputNumber.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="pack://application:,,,/DesignLibrary;component/Themes/Badge.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="pack://application:,,,/DesignLibrary;component/Themes/Loading.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/DesignLibrary;component/Themes/Geometry.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
             
         </ResourceDictionary>

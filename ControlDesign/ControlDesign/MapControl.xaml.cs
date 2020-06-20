@@ -1,6 +1,11 @@
-﻿using System;
+﻿using ControlDesign.Models;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,9 +25,16 @@ namespace ControlDesign
     /// </summary>
     public partial class MapControl : UserControl
     {
+ 
+
         public MapControl()
         {
             InitializeComponent();
+            Loaded += MapControl_Loaded;
+        }
+
+        private void MapControl_Loaded(object sender, RoutedEventArgs e)
+        {
         }
     }
 }
