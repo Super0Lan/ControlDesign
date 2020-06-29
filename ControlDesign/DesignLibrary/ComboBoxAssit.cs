@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,20 +36,28 @@ namespace DesignLibrary
                 {
                     if ((bool)e.NewValue)
                     {
-                        comboBox.SelectionChanged += ComboBox_SelectionChanged;
+                        //comboBox.SelectionChanged += ComboBox_SelectionChanged;
                         textbox.PreviewMouseLeftButtonDown += Textbox_PreviewMouseLeftButtonDown;
                         comboBox.GotFocus += ComboBox_GotFocus;
                         comboBox.DropDownClosed += ComboBox_DropDownClosed;
-                    }
+                        comboBox.IsKeyboardFocusWithinChanged += ComboBox_IsKeyboardFocusWithinChanged;                    }
                     else
                     {
                         textbox.PreviewMouseLeftButtonDown -= Textbox_PreviewMouseLeftButtonDown; ;
                         comboBox.GotFocus -= ComboBox_GotFocus;
-                        comboBox.SelectionChanged -= ComboBox_SelectionChanged;
+                        //comboBox.SelectionChanged -= ComboBox_SelectionChanged;
                         comboBox.DropDownClosed -= ComboBox_DropDownClosed;
                     }
                 }
 
+            }
+        }
+
+        private static void ComboBox_IsKeyboardFocusWithinChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            var comboBox = sender as ComboBox;
+            if ((bool)e.NewValue) {
+                comboBox.Focus();
             }
         }
 

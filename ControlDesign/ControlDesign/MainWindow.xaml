@@ -14,6 +14,6 @@
     <!--<Frame Source="Loading.xaml"></Frame>-->
     <Frame Source="ComboBoxPage.xaml"></Frame>
  
-    <local:MapControl></local:MapControl>
+    <!--<local:MapControl></local:MapControl>-->
 
 </Window>
