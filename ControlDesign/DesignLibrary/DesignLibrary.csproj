@@ -56,6 +56,7 @@
     <Compile Include="Assists.cs" />
     <Compile Include="ComboBoxAssit.cs" />
     <Compile Include="Controls\InputNumber.cs" />
+    <Compile Include="Converters\FindResourceConverter.cs" />
     <Compile Include="Enums\EnumAlignment.cs" />
     <Compile Include="Enums\EnumIcon.cs" />
     <Compile Include="Enums\EnumPosition.cs" />
@@ -91,6 +92,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\ComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Geometry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
