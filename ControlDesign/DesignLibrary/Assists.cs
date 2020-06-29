@@ -206,7 +206,60 @@ namespace DesignLibrary
         }
 
         #endregion
+
+        #region 水印 PlaceHolder
+
+
+        public static object GetPlaceHolder(DependencyObject obj)
+        {
+            return obj.GetValue(PlaceHolderProperty);
+        }
+
+        public static void SetPlaceHolder(DependencyObject obj, object value)
+        {
+            obj.SetValue(PlaceHolderProperty, value);
+        }
+
+        // Using a DependencyProperty as the backing store for PlaceHolder.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty PlaceHolderProperty =
+            DependencyProperty.RegisterAttached("PlaceHolder", typeof(object), typeof(Assists));
+
+        #region 水印颜色
+        public static Brush GetPlaceHolderBrush(DependencyObject obj)
+        {
+            return (Brush)obj.GetValue(PlaceHolderBrushProperty);
+        }
+
+        public static void SetPlaceHolderBrush(DependencyObject obj, Brush value)
+        {
+            obj.SetValue(PlaceHolderBrushProperty, value);
+        }
+
+        // Using a DependencyProperty as the backing store for PlaceHolderBrush.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty PlaceHolderBrushProperty =
+            DependencyProperty.RegisterAttached("PlaceHolderBrush", typeof(Brush), typeof(Assists), new PropertyMetadata(new BrushConverter().ConvertFromString("#dcdfe6")));
+        #endregion
+
+        #endregion
+
+        #region 是否可以清空
+
+
+        public static bool GetClearable(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(ClearableProperty);
+        }
+
+        public static void SetClearable(DependencyObject obj, bool value)
+        {
+            obj.SetValue(ClearableProperty, value);
+        }
+
+        // Using a DependencyProperty as the backing store for Clearable.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ClearableProperty =
+            DependencyProperty.RegisterAttached("Clearable", typeof(bool), typeof(Assists), new PropertyMetadata(false));
+
+
+        #endregion
     }
-
-
 }

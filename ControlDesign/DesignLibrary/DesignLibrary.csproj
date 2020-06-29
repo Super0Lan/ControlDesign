@@ -54,6 +54,7 @@
     <Compile Include="Adorners\LoadingAdorner.cs" />
     <Compile Include="Adorners\UnableAdorner.cs" />
     <Compile Include="Assists.cs" />
+    <Compile Include="ComboBoxAssit.cs" />
     <Compile Include="Controls\InputNumber.cs" />
     <Compile Include="Enums\EnumAlignment.cs" />
     <Compile Include="Enums\EnumIcon.cs" />
@@ -86,6 +87,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Themes\Badge.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ComboBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

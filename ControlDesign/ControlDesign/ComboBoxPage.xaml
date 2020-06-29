@@ -1,0 +1,32 @@
+﻿<Page x:Class="ControlDesign.ComboBoxPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ControlDesign"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      xmlns:sysCollection="clr-namespace:System.Collections;assembly=mscorlib"
+      xmlns:lib ="clr-namespace:DesignLibrary;assembly=DesignLibrary"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ComboBoxPage">
+    <Page.Resources>
+        <sysCollection:ArrayList x:Key="ComboBoxSource">
+            <sys:String>黄金糕</sys:String>
+            <sys:String>双皮奶</sys:String>
+            <sys:String>蚵仔煎</sys:String>
+            <sys:String>龙须面</sys:String>
+            <sys:String>北京烤鸭</sys:String>
+        </sysCollection:ArrayList>
+    </Page.Resources>
+    <WrapPanel Margin="20" x:Name="panel">
+        <ComboBox  ItemsSource="{Binding Source={StaticResource ComboBoxSource}}"></ComboBox>
+        <ComboBox lib:Assists.Clearable="True" ItemsSource="{Binding Source={StaticResource ComboBoxSource}}"></ComboBox>
+        <Separator Width="{Binding ElementName=panel,Path=ActualWidth}" Margin="0 20"></Separator>
+        <ComboBox IsEditable="True" ItemsSource="{Binding Source={StaticResource ComboBoxSource}}"></ComboBox>
+        <ComboBox IsEditable="True" lib:Assists.Clearable="True" ItemsSource="{Binding Source={StaticResource ComboBoxSource}}"></ComboBox>
+
+
+        <ComboBox  IsEditable="True" Style="{x:Null}" ItemsSource="{Binding Source={StaticResource ComboBoxSource}}"></ComboBox>
+    </WrapPanel>
+</Page>

@@ -9,6 +9,7 @@
                 <ResourceDictionary Source="pack://application:,,,/DesignLibrary;component/Themes/InputNumber.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="pack://application:,,,/DesignLibrary;component/Themes/Badge.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="pack://application:,,,/DesignLibrary;component/Themes/Loading.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/DesignLibrary;component/Themes/ComboBox.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
             
         </ResourceDictionary>
