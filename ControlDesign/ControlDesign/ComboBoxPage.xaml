@@ -20,13 +20,10 @@
         </sysCollection:ArrayList>
     </Page.Resources>
     <WrapPanel Margin="20" x:Name="panel">
-        <ComboBox  ItemsSource="{Binding Source={StaticResource ComboBoxSource}}"></ComboBox>
+        <ComboBox  ItemsSource="{Binding Source={StaticResource ComboBoxSource}}"></ComboBox> 
         <ComboBox lib:Assists.Clearable="True" ItemsSource="{Binding Source={StaticResource ComboBoxSource}}"></ComboBox>
         <Separator Width="{Binding ElementName=panel,Path=ActualWidth}" Margin="0 20"></Separator>
         <ComboBox IsEditable="True" ItemsSource="{Binding Source={StaticResource ComboBoxSource}}"></ComboBox>
         <ComboBox IsEditable="True" lib:Assists.Clearable="True" ItemsSource="{Binding Source={StaticResource ComboBoxSource}}"></ComboBox>
-
-
-        <ComboBox  IsEditable="True" Style="{x:Null}" ItemsSource="{Binding Source={StaticResource ComboBoxSource}}"></ComboBox>
     </WrapPanel>
 </Page>

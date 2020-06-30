@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -36,7 +37,6 @@ namespace DesignLibrary
                 {
                     if ((bool)e.NewValue)
                     {
-                        //comboBox.SelectionChanged += ComboBox_SelectionChanged;
                         textbox.PreviewMouseLeftButtonDown += Textbox_PreviewMouseLeftButtonDown;
                         comboBox.GotFocus += ComboBox_GotFocus;
                         comboBox.DropDownClosed += ComboBox_DropDownClosed;
@@ -45,7 +45,6 @@ namespace DesignLibrary
                     {
                         textbox.PreviewMouseLeftButtonDown -= Textbox_PreviewMouseLeftButtonDown; ;
                         comboBox.GotFocus -= ComboBox_GotFocus;
-                        //comboBox.SelectionChanged -= ComboBox_SelectionChanged;
                         comboBox.DropDownClosed -= ComboBox_DropDownClosed;
                     }
                 }
@@ -72,20 +71,9 @@ namespace DesignLibrary
         {
             if (sender is ComboBox comboBox)
             {
-                if (comboBox.GetType().GetProperty("EditableTextBoxSite", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)?.GetValue(comboBox) is TextBox textbox)
+                if (comboBox.GetType().GetProperty("EditableTextBoxSite", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)?.GetValue(comboBox) is TextBox textBox)
                 {
-                    textbox.Focusable = false;
-                }
-            }
-        }
-
-        private static void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (sender is ComboBox comboBox)
-            {
-                if (comboBox.GetType().GetProperty("EditableTextBoxSite", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)?.GetValue(comboBox) is TextBox textbox)
-                {
-                    textbox.Text = comboBox.SelectedValue?.ToString();
+                    textBox.Focusable = false;
                 }
             }
         }
