@@ -205,6 +205,25 @@ namespace DesignLibrary
             }
         }
 
+
+
+
+        public static Brush GetIconBrush(DependencyObject obj)
+        {
+            return (Brush)obj.GetValue(IconBrushProperty);
+        }
+
+        public static void SetIconBrush(DependencyObject obj, Brush value)
+        {
+            obj.SetValue(IconBrushProperty, value);
+        }
+
+        // Using a DependencyProperty as the backing store for IconBrush.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IconBrushProperty =
+            DependencyProperty.RegisterAttached("IconBrush", typeof(Brush), typeof(Assists), new PropertyMetadata(Brushes.Black));
+
+
+
         #endregion
 
         #region 水印 PlaceHolder

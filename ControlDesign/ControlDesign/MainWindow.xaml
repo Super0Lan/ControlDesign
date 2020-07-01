@@ -12,7 +12,8 @@
     <!--<Frame Source="BadgePage.xaml"></Frame>-->
     <!--<Frame Source="IconPage.xaml"></Frame>-->
     <!--<Frame Source="Loading.xaml"></Frame>-->
-    <Frame Source="ComboBoxPage.xaml"></Frame>
+    <!--<Frame Source="ComboBoxPage.xaml"></Frame>-->
+    <Frame Source="TextBoxPage.xaml"></Frame>
  
     <!--<local:MapControl></local:MapControl>-->
 

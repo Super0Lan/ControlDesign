@@ -1,0 +1,99 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:lib="clr-namespace:DesignLibrary">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/DesignLibrary;component/Themes/Theme.xaml"></ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+    
+    <Style TargetType="{x:Type TextBox}">
+        <Setter Property="Width" Value="{DynamicResource ControlWidth}"></Setter>
+        <Setter Property="Height" Value="{DynamicResource ControlHeight}"></Setter>
+        <Setter Property="lib:Assists.CornerRadius" Value="{DynamicResource LargeCorner}"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Padding" Value="0"></Setter>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"></Setter>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontSize.Base}"></Setter>
+        <Setter Property="lib:Assists.PlaceHolder" Value="请输入内容"></Setter>
+        <Setter Property="lib:Assists.IsEnable" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=IsEnabled,Mode=TwoWay}"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border CornerRadius="{TemplateBinding lib:Assists.CornerRadius}" x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" MaxWidth="30" MinWidth="15"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto" MinWidth="15" MaxWidth="30"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid x:Name="iconPanel" Margin="10 0 0 0" Width="{DynamicResource Icon.Size}" Height="{DynamicResource Icon.Size}">
+                                <Path Stretch="Uniform" Fill="{TemplateBinding lib:Assists.IconBrush}" lib:Assists.Icon="{TemplateBinding lib:Assists.Icon}"></Path>
+                                <ContentPresenter></ContentPresenter>
+                            </Grid>
+                            <ContentControl Grid.Column="1" x:Name="placeHolder" Visibility="Collapsed" IsHitTestVisible="False" TextBlock.Foreground="{TemplateBinding lib:Assists.PlaceHolderBrush}"
+                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                            Margin="{TemplateBinding Padding}" Content="{TemplateBinding lib:Assists.PlaceHolder}"></ContentControl>
+                            <ScrollViewer Grid.Column="1"  x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                            <Button Grid.Column="3" Width="30" Margin="0" 
+                                    Visibility="Collapsed"
+                                    x:Name="clearButton"
+                                    Style="{StaticResource ClearButton}"></Button>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="lib:Assists.Clearable" Value="True">
+                            <Setter Property="Padding" Value="15 0 0 0"></Setter>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="lib:Assists.Clearable" Value="True"></Condition>
+                                <Condition Property="IsMouseOver" Value="True"></Condition>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="clearButton" Property="Visibility" Value="Visible"></Setter>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="lib:Assists.Clearable" Value="True"></Condition>
+                                <Condition Property="IsFocused" Value="True"></Condition>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="clearButton" Property="Visibility" Value="Visible"></Setter>
+                        </MultiTrigger>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self},Path=Text.Length}" Value="0">
+                            <Setter TargetName="placeHolder" Property="Visibility" Value="Visible"></Setter>
+                            <Setter TargetName="clearButton" Property="Visibility" Value="Collapsed"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self},Path=Text}" Value="{x:Null}">
+                            <Setter TargetName="placeHolder" Property="Visibility" Value="Visible"></Setter>
+                            <Setter TargetName="clearButton" Property="Visibility" Value="Collapsed"></Setter>
+                        </DataTrigger>
+                        <Trigger SourceName="clearButton" Property="IsPressed" Value="True">
+                            <Setter Property="Text" Value="{x:Null}"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{DynamicResource Control.Unable.Background}"></Setter>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" Value="{DynamicResource MouseOverBorderBrush}"></Setter>
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="BorderBrush" Value="{DynamicResource FocusedBorderBrush}"></Setter>
+            </Trigger>
+            <Trigger Property="VerticalContentAlignment" Value="Top">
+                <Setter Property="Padding" Value="15 10"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>
