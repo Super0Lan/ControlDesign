@@ -226,6 +226,29 @@ namespace DesignLibrary
 
         #endregion
 
+        #region 图标位置
+
+
+
+        public static EnumPosition GetIconPosition(DependencyObject obj)
+        {
+            return (EnumPosition)obj.GetValue(IconPositionProperty);
+        }
+
+        public static void SetIconPosition(DependencyObject obj, EnumPosition value)
+        {
+            obj.SetValue(IconPositionProperty, value);
+        }
+
+        // Using a DependencyProperty as the backing store for IconPosition.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IconPositionProperty =
+            DependencyProperty.RegisterAttached("IconPosition", typeof(EnumPosition), typeof(Assists), new PropertyMetadata(EnumPosition.Left));
+
+
+
+
+        #endregion
+
         #region 水印 PlaceHolder
 
 

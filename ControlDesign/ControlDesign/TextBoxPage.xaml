@@ -9,12 +9,22 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TextBoxPage">
     <AdornerDecorator>
-        <WrapPanel Margin="20" ItemWidth="200">
-            <TextBox></TextBox>
-            <TextBox IsEnabled="False"></TextBox>
-            <TextBox lib:Assists.Clearable="True"></TextBox>
-            <TextBox lib:Assists.Clearable="True" lib:Assists.Icon="Alipay"></TextBox>
-        </WrapPanel>
+        <StackPanel>
+            <WrapPanel Margin="20" ItemWidth="200">
+                <TextBox></TextBox>
+                <TextBox IsEnabled="False"></TextBox>
+                <TextBox lib:Assists.Clearable="True"></TextBox>
+            </WrapPanel>
+            <WrapPanel Margin="20" ItemWidth="200">
+                <TextBox lib:Assists.Clearable="True"  lib:Assists.Icon="Alipay"></TextBox>
+                <TextBox lib:Assists.Icon="Alipay"></TextBox>
+                <TextBox lib:Assists.Clearable="True" lib:Assists.IconPosition="Right" lib:Assists.Icon="Applets"></TextBox>
+            </WrapPanel>
+            <WrapPanel Margin="20" ItemWidth="200">
+                <TextBox lib:Assists.Icon="Alipay" lib:Assists.IconPosition="Right"></TextBox>
+            </WrapPanel>
+        </StackPanel>
+
     </AdornerDecorator>
 
 </Page>

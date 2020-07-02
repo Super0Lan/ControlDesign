@@ -28,30 +28,28 @@
                     <Border CornerRadius="{TemplateBinding lib:Assists.CornerRadius}" x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto" MaxWidth="30" MinWidth="15"/>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="auto" MinWidth="15" MaxWidth="30"/>
+                                <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
-                            <Grid x:Name="iconPanel" Margin="10 0 0 0" Width="{DynamicResource Icon.Size}" Height="{DynamicResource Icon.Size}">
-                                <Path Stretch="Uniform" Fill="{TemplateBinding lib:Assists.IconBrush}" lib:Assists.Icon="{TemplateBinding lib:Assists.Icon}"></Path>
+                            <Grid Grid.Column="1" Margin="0 0 5 0" x:Name="iconPanel" Width="{DynamicResource Icon.Size}" Height="{DynamicResource Icon.Size}">
+                                <Path HorizontalAlignment="Center" Stretch="Uniform" Fill="{TemplateBinding lib:Assists.IconBrush}" lib:Assists.Icon="{TemplateBinding lib:Assists.Icon}"></Path>
                                 <ContentPresenter></ContentPresenter>
                             </Grid>
-                            <ContentControl Grid.Column="1" x:Name="placeHolder" Visibility="Collapsed" IsHitTestVisible="False" TextBlock.Foreground="{TemplateBinding lib:Assists.PlaceHolderBrush}"
+                            <ContentControl Grid.Column="2" x:Name="placeHolder" Visibility="Collapsed" IsHitTestVisible="False" TextBlock.Foreground="{TemplateBinding lib:Assists.PlaceHolderBrush}"
                                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                             Margin="{TemplateBinding Padding}" Content="{TemplateBinding lib:Assists.PlaceHolder}"></ContentControl>
-                            <ScrollViewer Grid.Column="1"  x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
-                            <Button Grid.Column="3" Width="30" Margin="0" 
+                            <ScrollViewer Grid.Column="2"  x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                            <Button Grid.Column="4" Width="30" Margin="0" 
                                     Visibility="Collapsed"
                                     x:Name="clearButton"
                                     Style="{StaticResource ClearButton}"></Button>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="lib:Assists.Clearable" Value="True">
-                            <Setter Property="Padding" Value="15 0 0 0"></Setter>
-                        </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="lib:Assists.Clearable" Value="True"></Condition>
@@ -77,6 +75,15 @@
                         <Trigger SourceName="clearButton" Property="IsPressed" Value="True">
                             <Setter Property="Text" Value="{x:Null}"></Setter>
                         </Trigger>
+                        <Trigger Property="lib:Assists.Icon" Value="Default">
+                            <Setter TargetName="iconPanel"  Property="Visibility" Value="Collapsed"></Setter>
+                        </Trigger>
+                        <Trigger Property="lib:Assists.IconPosition" Value="Right">
+                            <Setter TargetName="iconPanel" Property="Grid.Column" Value="3"></Setter>
+                        </Trigger>
+                        <Trigger Property="lib:Assists.IconPosition" Value="Strech">
+                            <Setter TargetName="iconPanel" Property="Grid.Column" Value="2"></Setter>
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -92,7 +99,7 @@
                 <Setter Property="BorderBrush" Value="{DynamicResource FocusedBorderBrush}"></Setter>
             </Trigger>
             <Trigger Property="VerticalContentAlignment" Value="Top">
-                <Setter Property="Padding" Value="15 10"></Setter>
+                <Setter Property="Padding" Value="0 10"></Setter>
             </Trigger>
         </Style.Triggers>
     </Style>
