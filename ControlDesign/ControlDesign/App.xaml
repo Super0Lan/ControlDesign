@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="pack://application:,,,/DesignLibrary;component/Themes/ComboBox.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="pack://application:,,,/DesignLibrary;component/Themes/Geometry.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="pack://application:,,,/DesignLibrary;component/Themes/TextBox.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/DesignLibrary;component/Themes/Pagination.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
             
         </ResourceDictionary>

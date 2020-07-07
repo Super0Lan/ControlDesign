@@ -13,7 +13,9 @@
     <!--<Frame Source="IconPage.xaml"></Frame>-->
     <!--<Frame Source="Loading.xaml"></Frame>-->
     <!--<Frame Source="ComboBoxPage.xaml"></Frame>-->
-    <Frame Source="TextBoxPage.xaml"></Frame>
+    <!--<Frame Source="TextBoxPage.xaml"></Frame>-->
+    <!--<Frame Source="TextBoxPage.xaml"></Frame>-->
+    <Frame Source="PaginationPage.xaml"></Frame>
  
     <!--<local:MapControl></local:MapControl>-->
 
