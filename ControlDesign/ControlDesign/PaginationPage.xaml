@@ -22,7 +22,7 @@
         <lib:Pagination Total="5" PageSize="1"></lib:Pagination>
         <lib:Pagination Total="100" PageSize="1"></lib:Pagination>
         <lib:Pagination Total="50" PageSize="1" PagerCount="11"></lib:Pagination>
-        <lib:Pagination Total="1000" x:Name="pagination" Background="#409EFF"></lib:Pagination>
+        <lib:Pagination Total="40" Margin="20" x:Name="pagination" Background="#409EFF"></lib:Pagination>
         <WrapPanel Margin="0 20 0 0">
             <Label VerticalContentAlignment="Center" ContentStringFormat="共{0}条" Content="{Binding ElementName=pagination,Path=Total}"></Label>
             <ComboBox SelectedIndex="0" SelectedValue="{Binding ElementName=pagination,Path=PageSize,Mode=TwoWay}" ItemsSource="{Binding Source={StaticResource PageSizeSource}}">
@@ -31,6 +31,7 @@
             <TextBox Width="50" VerticalContentAlignment="Center" Text="{Binding ElementName=pagination,Path=CurrentPage,Mode=TwoWay}"></TextBox>
             <Label VerticalContentAlignment="Center" Content="页"></Label>
             <CheckBox>这只是为了获取焦点的</CheckBox>
+            <CheckBox IsChecked="{Binding ElementName=pagination,Path=HideOnSinglePage,Mode=TwoWay}">单页时是否隐藏</CheckBox>
         </WrapPanel>
     </StackPanel>
 </Page>

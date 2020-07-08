@@ -184,9 +184,36 @@ namespace DesignLibrary
 
         #endregion
 
+        #region 只有一页时是否yinc
+
+
+        public bool HideOnSinglePage
+        {
+            get { return (bool)GetValue(HideOnSinglePageProperty); }
+            set { SetValue(HideOnSinglePageProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for HideOnSinglePage.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty HideOnSinglePageProperty =
+            DependencyProperty.Register("HideOnSinglePage", typeof(bool), typeof(Pagination), new PropertyMetadata(true,HideOnSinglePagePropertyChanged));
+
+        private static void HideOnSinglePagePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is Pagination pagination) {
+                pagination.SetCurrentValue(VisibilityProperty, (pagination.PageCount == 1 && (bool)e.NewValue) ? Visibility.Collapsed : Visibility.Visible);
+            }
+        }
+
+
+        #endregion
+
         private void InitPager()
         {
             var pageCount = (int)Math.Ceiling((double)Total / PageSize);
+            if (PageCount == 1 && HideOnSinglePage) {
+                SetCurrentValue(VisibilityProperty,Visibility.Collapsed);
+                return;
+            }
             var currentPage = CurrentPage;
             var pagerCount = PagerCount;
 
