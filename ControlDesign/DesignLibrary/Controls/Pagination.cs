@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -48,8 +49,7 @@ namespace DesignLibrary
     /// </summary>
     [TemplatePart(Name = "PrevButtonTemplateName", Type = typeof(Button))]
     [TemplatePart(Name = "NextButtonTemplateName", Type = typeof(Button))]
-    [TemplatePart(Name = "PageItemsTemplateName", Type = typeof(ListBox))]
-    public class Pagination : ContentControl
+    public class Pagination : Selector
     {
         private const string PrevButtonTemplateName = "PART_PREV";
         private const string NextButtonTemplateName = "PART_Next";
@@ -57,7 +57,7 @@ namespace DesignLibrary
 
         private Button _prevButton;
         private Button _nextButton;
-        private ListBox _pageItems;
+
 
         public override void OnApplyTemplate()
         {
@@ -69,14 +69,9 @@ namespace DesignLibrary
             {
                 _nextButton.Click -= _nextButton_Click;
             }
-            if (_pageItems != null)
-            {
-                _pageItems.SelectionChanged -= _pageItems_SelectionChanged;
-            }
             base.OnApplyTemplate();
             _prevButton = GetTemplateChild(PrevButtonTemplateName) as Button;
             _nextButton = GetTemplateChild(NextButtonTemplateName) as Button;
-            _pageItems = GetTemplateChild(PageItemsTemplateName) as ListBox;
             if (_prevButton != null)
             {
                 _prevButton.Click += _prevButton_Click;
@@ -85,40 +80,7 @@ namespace DesignLibrary
             {
                 _nextButton.Click += _nextButton_Click;
             }
-            if (_pageItems != null)
-            {
-                _pageItems.ItemsSource = Pages;
-                _pageItems.SelectionChanged += _pageItems_SelectionChanged;
-            }
             InitPager();
-        }
-
-        private void _pageItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (e.AddedItems.Count > 0 && e.AddedItems[0] is PaginationButton pagination)
-            {
-                switch (pagination.Value)
-                {
-                    case "Pre":
-                        {
-                            SetCurrentValue(CurrentPageProperty, Math.Max(1, CurrentPage - PagerCount - 2));
-                            break;
-                        }
-                    case "Next":
-                        {
-                            SetCurrentValue(CurrentPageProperty, Math.Min(PageCount, CurrentPage + PagerCount - 2));
-                            break;
-                        }
-                    default:
-                        {
-                            if (int.TryParse(pagination.Value, out int num))
-                            {
-                                SetCurrentValue(CurrentPageProperty, num);
-                            }
-                            break;
-                        }
-                }
-            }
         }
 
         private void _nextButton_Click(object sender, RoutedEventArgs e)
@@ -134,6 +96,10 @@ namespace DesignLibrary
         static Pagination()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Pagination), new FrameworkPropertyMetadata(typeof(Pagination)));
+
+            ItemsPanelTemplate template = new ItemsPanelTemplate(new FrameworkElementFactory(typeof(WrapPanel)));
+            template.Seal();
+            ItemsPanelProperty.OverrideMetadata(typeof(Pagination), new FrameworkPropertyMetadata(template));
         }
 
         #region 每页显示条目个数
@@ -218,17 +184,9 @@ namespace DesignLibrary
 
         #endregion
 
-        #region 页码按钮
-
-
-        protected ObservableCollection<PaginationButton> Pages { get; set; } = new ObservableCollection<PaginationButton>();
-
-
-        #endregion
-
         private void InitPager()
         {
-            var pageCount = PageCount;
+            var pageCount = (int)Math.Ceiling((double)Total / PageSize);
             var currentPage = CurrentPage;
             var pagerCount = PagerCount;
 
@@ -241,42 +199,77 @@ namespace DesignLibrary
             startPageIndex = endPageIndex - pagerCount + 1;
             startPageIndex = startPageIndex < 1 ? 1 : startPageIndex;
 
-            Pages.Clear();
+            Items.Clear();
 
             if (startPageIndex > 1)
             {
-                Pages.Add(new PaginationButton("1"));
+                AddItem("1");
             }
 
-            if (currentPage > 4 && pagerCount > 6)
+            if (currentPage >= ((pagerCount - 1) / 2 + 2) && pageCount > 6)
             {
-                Pages.Add(new PaginationButton() { Text = "...", Value = "Pre" });
+                AddItem("...", PagintionButtonType.Prev);
                 startPageIndex++;
             }
 
-            for (int index = startPageIndex; index <= endPageIndex; index++)
+            for (int index = startPageIndex; index < endPageIndex; index++)
             {
-                Pages.Add(new PaginationButton(index.ToString()));
-                if (currentPage == index && _pageItems != null)
-                {
-                    _pageItems.SelectedItem = Pages.FirstOrDefault(x => x.Value == currentPage.ToString());
-                    if (currentPage == pageCount) {
-                        Thread.Sleep(150);
-                    }
-                }
+                AddItem(index.ToString());
             }
 
-            if (currentPage < pageCount - 3 && pageCount > 6)
+            if (currentPage < (pageCount - (pagerCount - 1) / 2) && pageCount > 6)
             {
-                Pages.Add(new PaginationButton() { Text = "...", Value = "Next" });
+                AddItem("...", PagintionButtonType.Next);
             }
 
-            if (endPageIndex < pageCount)
+            if (endPageIndex <= pageCount)
             {
-                Pages.Add(new PaginationButton(pageCount.ToString()));
+                AddItem(pageCount.ToString());
             }
             _prevButton?.SetCurrentValue(IsEnabledProperty, currentPage != 1);
             _nextButton?.SetCurrentValue(IsEnabledProperty, currentPage != pageCount);
+            SetCurrentValue(PageCountProperty, pageCount);
+        }
+
+        private void AddItem(string content, PagintionButtonType pagintionButtonType = PagintionButtonType.Normal)
+        {
+            var button = new PaginationButton()
+            {
+                Content = content,
+                PagintionButtonType = pagintionButtonType,
+                IsCurrentPage = pagintionButtonType == PagintionButtonType.Normal && int.TryParse(content, out int num) && num == CurrentPage,
+            };
+            button.Click += Button_Click;
+            Items.Add(button);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is PaginationButton button)
+            {
+                switch (button.PagintionButtonType)
+                {
+                    case PagintionButtonType.Prev:
+                        {
+                            SetCurrentValue(CurrentPageProperty, Math.Max(1, CurrentPage - PagerCount + 2));
+                            break;
+                        }
+                    case PagintionButtonType.Next:
+                        {
+                            SetCurrentValue(CurrentPageProperty, Math.Min(PageCount, CurrentPage + PagerCount - 2));
+                            break;
+                        }
+                    default:
+                        {
+                            if (int.TryParse(button.Content?.ToString(), out int num))
+                            {
+                                SetCurrentValue(CurrentPageProperty, num);
+                            }
+                            break;
+                        }
+                }
+            }
+
         }
 
         private static void InitPagination(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -286,21 +279,5 @@ namespace DesignLibrary
                 pagination.InitPager();
             }
         }
-    }
-
-    public class PaginationButton
-    {
-
-        public PaginationButton() { }
-
-        public PaginationButton(string str)
-        {
-            Text = str;
-            Value = str;
-        }
-
-        public string Text { get; set; }
-
-        public string Value { get; set; }
     }
 }

@@ -6,10 +6,31 @@
       xmlns:local="clr-namespace:ControlDesign"
       mc:Ignorable="d" 
       xmlns:lib ="clr-namespace:DesignLibrary;assembly=DesignLibrary"
+      xmlns:sysCollection="clr-namespace:System.Collections;assembly=mscorlib"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PaginationPage">
-
-    <Grid>
-        <lib:Pagination PageCount="100"></lib:Pagination>
-    </Grid>
+    <Page.Resources>
+        <sysCollection:ArrayList x:Key="PageSizeSource">
+            <sys:Int32>10</sys:Int32>
+            <sys:Int32>20</sys:Int32>
+            <sys:Int32>30</sys:Int32>
+            <sys:Int32>40</sys:Int32>
+        </sysCollection:ArrayList>
+    </Page.Resources>
+    <StackPanel>
+        <lib:Pagination Total="5" PageSize="1"></lib:Pagination>
+        <lib:Pagination Total="100" PageSize="1"></lib:Pagination>
+        <lib:Pagination Total="50" PageSize="1" PagerCount="11"></lib:Pagination>
+        <lib:Pagination Total="1000" x:Name="pagination" Background="#409EFF"></lib:Pagination>
+        <WrapPanel Margin="0 20 0 0">
+            <Label VerticalContentAlignment="Center" ContentStringFormat="共{0}条" Content="{Binding ElementName=pagination,Path=Total}"></Label>
+            <ComboBox SelectedIndex="0" SelectedValue="{Binding ElementName=pagination,Path=PageSize,Mode=TwoWay}" ItemsSource="{Binding Source={StaticResource PageSizeSource}}">
+            </ComboBox>
+            <Label VerticalContentAlignment="Center" Content="前往"></Label>
+            <TextBox Width="50" VerticalContentAlignment="Center" Text="{Binding ElementName=pagination,Path=CurrentPage,Mode=TwoWay}"></TextBox>
+            <Label VerticalContentAlignment="Center" Content="页"></Label>
+            <CheckBox>这只是为了获取焦点的</CheckBox>
+        </WrapPanel>
+    </StackPanel>
 </Page>

@@ -1,24 +1,26 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:DesignLibrary">
-    <Style TargetType="Button" x:Key="PagingBtn">
-        <Setter Property="Height" Value="30"></Setter>
-        <Setter Property="Width" Value="30"></Setter>
-        <Setter Property="Background" Value="Transparent"></Setter>
-        <Setter Property="Foreground" Value="#A3ADB8"></Setter>
-        <Setter Property="Margin" Value="0,0,1,0"></Setter>
+    <Style TargetType="{x:Type local:PaginationButton}">
+        <Setter Property="MinHeight" Value="30"></Setter>
+        <Setter Property="MinWidth" Value="30"></Setter>
+        <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:Pagination}},Path=Background}"></Setter>
+        <Setter Property="Foreground" Value="Black"></Setter>
+        <Setter Property="Margin" Value="0,0,10,0"></Setter>
+        <Setter Property="Padding" Value="5 0"></Setter>
         <Setter Property="BorderThickness" Value="0"></Setter>
         <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
         <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
         <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
         <Setter Property="local:Assists.IsEnable" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=IsEnabled,Mode=TwoWay}"></Setter>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="Button">
+                <ControlTemplate TargetType="{x:Type local:PaginationButton}">
                     <Border CornerRadius="{DynamicResource LargeCorner}" x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
                         <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          SnapsToDevicePixels="True"
+                                          SnapsToDevicePixels="True" Margin="{TemplateBinding Padding}"
                                           Content="{TemplateBinding Content}"></ContentPresenter>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -26,6 +28,16 @@
                             <Setter Property="Foreground" Value="Black"></Setter>
                             <Setter Property="Opacity" Value="0.4"></Setter>
                         </Trigger>
+                        <Trigger Property="IsCurrentPage" Value="True">
+                            <Setter Property="Foreground" Value="White"></Setter>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Background" Value="{x:Null}"></Condition>
+                                <Condition Property="IsCurrentPage" Value="True"></Condition>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Foreground" Value="{DynamicResource ThemeColor}"></Setter>
+                        </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -35,39 +47,6 @@
                 <Setter Property="Foreground" Value="{DynamicResource Control.Unable.Forground}"></Setter>
             </Trigger>
         </Style.Triggers>
-    </Style>
-
-
-    <Style TargetType="ListBoxItem" x:Key="PaginationButtonItem">
-        <Setter Property="Cursor" Value="Hand"></Setter>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ListBoxItem">
-                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                        <Button IsHitTestVisible="False" Style="{StaticResource PagingBtn}" Content="{Binding Text}" Background="{TemplateBinding Background}" Foreground="{TemplateBinding Foreground}"></Button>
-                    </Border>
-                <ControlTemplate.Triggers>
-                        <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" Value="#288CEE"></Setter>
-                            <Setter Property="Foreground" Value="#FFFFFF"></Setter>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    
-    
-    <Style TargetType="ListBox" x:Key="PaginationButtonItems">
-        <Setter Property="ItemContainerStyle" Value="{StaticResource PaginationButtonItem}"></Setter>
-        <Setter Property="BorderBrush" Value="Transparent"></Setter>
-        <Setter Property="ItemsPanel">
-            <Setter.Value>
-                <ItemsPanelTemplate>
-                    <WrapPanel></WrapPanel>
-                </ItemsPanelTemplate>
-            </Setter.Value>
-        </Setter>
     </Style>
 
 
@@ -84,13 +63,13 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Pagination}">
                     <WrapPanel>
-                        <Button Style="{StaticResource PagingBtn}" x:Name="PART_PREV">
+                        <local:PaginationButton x:Name="PART_PREV" Background="{TemplateBinding Background}">
                             <Path Style="{StaticResource PaginationPath}" Data="M721.594 118.177c12.379 12.379 12.379 32.283 0 44.661l-349.647 349.647 349.647 349.647c12.379 12.379 12.379 32.283 0 44.661-5.705 5.735-13.603 9.284-22.331 9.284-8.726 0-16.625-3.549-22.33-9.283l-371.979-371.979c-5.735-5.705-9.284-13.603-9.284-22.331 0-8.726 3.549-16.625 9.283-22.33l371.979-371.979c12.379-12.379 32.404-12.379 44.661 0z"></Path>
-                        </Button>
-                        <ListBox x:Name="PART_PAGE" Style="{StaticResource PaginationButtonItems}"></ListBox>
-                        <Button Style="{StaticResource PagingBtn}" x:Name="PART_Next">
+                        </local:PaginationButton>
+                        <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"></ItemsPresenter>
+                        <local:PaginationButton  x:Name="PART_Next" Background="{TemplateBinding Background}">
                             <Path Style="{StaticResource PaginationPath}" Data="M317.554 142.791c-5.377 5.348-8.704 12.753-8.704 20.935s3.327 15.586 8.703 20.934l327.795 327.795-327.794 327.794c-5.377 5.348-8.704 12.753-8.704 20.935s3.327 15.586 8.703 20.934c11.606 11.606 30.266 11.606 41.871 0.001l348.729-348.729c11.605-11.605 11.605-30.265 0-41.87l-348.843-348.729c-11.491-11.605-30.265-11.605-41.757 0z"></Path>
-                        </Button>
+                        </local:PaginationButton>
                     </WrapPanel>
                 </ControlTemplate>
             </Setter.Value>

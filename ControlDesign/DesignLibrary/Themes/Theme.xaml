@@ -3,6 +3,9 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <sys:Double x:Key="ControlHeight">40</sys:Double>
     <sys:Double x:Key="ControlWidth">180</sys:Double>
+
+    <SolidColorBrush x:Key="ThemeColor" Color="#409EFF"></SolidColorBrush>
+    
     <SolidColorBrush x:Key="BorderBrush" Color="#dcdfe6"></SolidColorBrush>
     <SolidColorBrush x:Key="MouseOverBorderBrush" Color="#C0C4CC"></SolidColorBrush>
     <SolidColorBrush x:Key="FocusedBorderBrush" Color="#409EFF"></SolidColorBrush>
