@@ -145,7 +145,7 @@ namespace DesignLibrary
 
         // Using a DependencyProperty as the backing store for Total.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TotalProperty =
-            DependencyProperty.Register("Total", typeof(int), typeof(Pagination), new PropertyMetadata(0));
+            DependencyProperty.Register("Total", typeof(int), typeof(Pagination), new PropertyMetadata(0, InitPagination));
         #endregion
 
         #region 当前页数
