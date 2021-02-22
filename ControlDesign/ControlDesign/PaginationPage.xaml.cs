@@ -24,5 +24,10 @@ namespace ControlDesign
         {
             InitializeComponent();
         }
+
+        private void Pagination_PageChanged(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }

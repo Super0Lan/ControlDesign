@@ -58,6 +58,18 @@ namespace DesignLibrary
         private Button _prevButton;
         private Button _nextButton;
 
+        #region PageChanging事件
+        public static readonly RoutedEvent PageChangedEvent = EventManager.RegisterRoutedEvent("PageChangedEvent", RoutingStrategy.Direct, typeof(RoutedPropertyChangedEventArgs<int>), typeof(Pagination));
+
+        public event RoutedEventHandler PageChanged
+        {
+            //将路由事件添加路由事件处理程序
+            add { AddHandler(PageChangedEvent, value); }
+            //从路由事件处理程序中移除路由事件
+            remove { RemoveHandler(PageChangedEvent, value); }
+        }
+        #endregion
+
 
         public override void OnApplyTemplate()
         {
@@ -184,7 +196,7 @@ namespace DesignLibrary
 
         #endregion
 
-        #region 只有一页时是否yinc
+        #region 只有一页时是否隐藏
 
 
         public bool HideOnSinglePage
@@ -195,11 +207,12 @@ namespace DesignLibrary
 
         // Using a DependencyProperty as the backing store for HideOnSinglePage.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty HideOnSinglePageProperty =
-            DependencyProperty.Register("HideOnSinglePage", typeof(bool), typeof(Pagination), new PropertyMetadata(true,HideOnSinglePagePropertyChanged));
+            DependencyProperty.Register("HideOnSinglePage", typeof(bool), typeof(Pagination), new PropertyMetadata(true, HideOnSinglePagePropertyChanged));
 
         private static void HideOnSinglePagePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is Pagination pagination) {
+            if (d is Pagination pagination)
+            {
                 pagination.SetCurrentValue(VisibilityProperty, (pagination.PageCount == 1 && (bool)e.NewValue) ? Visibility.Collapsed : Visibility.Visible);
             }
         }
@@ -210,8 +223,9 @@ namespace DesignLibrary
         private void InitPager()
         {
             var pageCount = (int)Math.Ceiling((double)Total / PageSize);
-            if (PageCount == 1 && HideOnSinglePage) {
-                SetCurrentValue(VisibilityProperty,Visibility.Collapsed);
+            if (PageCount == 1 && HideOnSinglePage)
+            {
+                SetCurrentValue(VisibilityProperty, Visibility.Collapsed);
                 return;
             }
             else
@@ -307,6 +321,14 @@ namespace DesignLibrary
         {
             if (d is Pagination pagination)
             {
+                if (e.Property == CurrentPageProperty)
+                {
+                    var pageChanged = new RoutedPropertyChangedEventArgs<int>((int) e.OldValue, (int) e.NewValue, PageChangedEvent);
+                    pagination.RaiseEvent(pageChanged);
+                    if (pageChanged.Handled) {
+                        return;
+                    }
+                }
                 pagination.InitPager();
             }
         }

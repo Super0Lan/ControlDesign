@@ -19,10 +19,10 @@
         </sysCollection:ArrayList>
     </Page.Resources>
     <StackPanel>
-        <lib:Pagination Total="5" PageSize="1"></lib:Pagination>
-        <lib:Pagination Total="100" PageSize="1"></lib:Pagination>
-        <lib:Pagination Total="50" PageSize="1" PagerCount="11"></lib:Pagination>
-        <lib:Pagination Total="40" Margin="20" x:Name="pagination" Background="#409EFF"></lib:Pagination>
+        <lib:Pagination PageChanged="Pagination_PageChanged" Total="5" PageSize="1"></lib:Pagination>
+        <lib:Pagination PageChanged="Pagination_PageChanged" Total="100" PageSize="1"></lib:Pagination>
+        <lib:Pagination PageChanged="Pagination_PageChanged" Total="50" PageSize="1" PagerCount="11"></lib:Pagination>
+        <lib:Pagination PageChanged="Pagination_PageChanged" Total="40" Margin="20" x:Name="pagination" Background="#409EFF"></lib:Pagination>
         <WrapPanel Margin="0 20 0 0">
             <Label VerticalContentAlignment="Center" ContentStringFormat="共{0}条" Content="{Binding ElementName=pagination,Path=Total}"></Label>
             <ComboBox SelectedIndex="0" SelectedValue="{Binding ElementName=pagination,Path=PageSize,Mode=TwoWay}" ItemsSource="{Binding Source={StaticResource PageSizeSource}}">
